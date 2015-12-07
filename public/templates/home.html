@@ -1,1 +1,29 @@
-<h1>{{vm.title}}</h1>
+<md-content>
+    <div layout='column' ng-show="global.status._id">
+    	<br>
+    	<form ng-submit="vm.createPost()" layout layout-padding>
+    		<md-input-container flex='90'>
+    			<label>Post!</label>
+    			<input type="text" ng-model="vm.post" required />
+    		</md-input-container>
+    		<md-button type='submit' flex class='md-raised md-ward'>Submit</md-button>
+    		
+    	</form>
+    	<md-divider md-inset></md-divider>
+    	<br>
+    </div>
+    <div layout='column'>
+    	<md-card>
+    	    <md-list>
+    	        <md-list-item class="md-3-line" ng-repeat="p in vm.posts">
+		          <div class="md-list-item-text" layout="column">
+		            <h3>{{ p.message }}</h3>
+		            <h4>{{ p.createdBy.local.userName }}</h4>
+		            <p>{{ p.dateCreated | date:'medium' }}</p>
+		          </div>
+        		</md-list-item>
+    	    </md-list>
+    	</md-card>
+    </div>
+</md-content>
+    

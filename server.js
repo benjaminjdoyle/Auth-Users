@@ -8,8 +8,8 @@ let mongoose = require('mongoose');
 require('./models/user');
 require('./config/passport');
 
-if(process.env.NODE_ENV === 'test') mongoose.connect('mongodb://localhost/userauth-test')
-else mongoose.connect('mongodb://localhost/userauth');
+if(process.env.NODE_ENV === 'test') mongoose.connect('mongodb://localhost/usersPost-test')
+else mongoose.connect('mongodb://localhost/usersPost');
 
 
 app.set('views', './views');
@@ -31,10 +31,11 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
+//here the server takes all '/api/v1/users/' reqs and uses userRoutes.js to process them
 app.use('/api/v1/users/', userRoutes);
 
 app.use((err, req, res) => {
-	console.log(err);
+	if(process.env.NODE_ENV !== 'test') {console.log(err);}
 	res.status(500).send(err);
 });
 

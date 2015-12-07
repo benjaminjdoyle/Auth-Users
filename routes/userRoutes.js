@@ -20,7 +20,7 @@ router.post('/register', (req, res, next) => {
 		user.save((err, result) => {
 			if(err) return next(err);
 			if(!result) return next(`could not create user`);
-			res.send({ token: result.generateJWT() }); console.log(token)
+			res.send({ token: result.generateJWT() }); 
 		});	
 	});
 });

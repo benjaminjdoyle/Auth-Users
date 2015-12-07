@@ -9,18 +9,22 @@
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body ng-controller='GlobalController as global'>
-	<md-toolbar layout>
+	<md-toolbar>
 		<span flex></span>
 		<div layout layout-align="center" ng-show="!global.status._id">
 			<md-button ui-sref='Home'>Home</md-button>
 			<md-button ui-sref="Login">Login</md-button>
 			<md-button ui-sref="Register">Register</md-button>
 		</div>
-		<div layout layout-align="center" ng-show="global.status._id">
-			<md-button ui-sref="Profile">Profile</md-button>
-			<md-button ng-click="global.logout()">Logout</md-button>
-			<md-button ui-sref='Home'>Home</md-button>
-			<md-button ng-click="home.post()">Post</md-button>
+		<div layout='row' ng-show="global.status._id">
+			<div layout layout-align='left'>
+				<md-button ui-sref='Home'>Home</md-button>
+			</div>
+			<span flex='65'></span>
+			<div layout layout-align='right'>
+				<md-button ui-sref="Profile">Profile</md-button>
+				<md-button ng-click="global.logout()">Logout</md-button>
+			</div>
 		</div>
 
 	</md-toolbar>

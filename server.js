@@ -6,6 +6,7 @@ let port = process.env.PORT || 3000;
 let passport = require('passport');
 let mongoose = require('mongoose');
 require('./models/user');
+require('./models/post');
 require('./config/passport');
 
 if(process.env.NODE_ENV === 'test') mongoose.connect('mongodb://localhost/usersPost-test')
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 let userRoutes = require('./routes/userRoutes');
+let postRoutes = require('./routes/postRoutes');
 
 app.get('/', function(req, res) {
 	res.render('index');
@@ -33,6 +35,8 @@ app.get('/', function(req, res) {
 
 //here the server takes all '/api/v1/users/' reqs and uses userRoutes.js to process them
 app.use('/api/v1/users/', userRoutes);
+app.use('/api/v1/posts/', postRoutes);
+
 
 app.use((err, req, res) => {
 	if(process.env.NODE_ENV !== 'test') {console.log(err);}
